@@ -1,0 +1,9 @@
+<h1>Full Menu</h1>
+
+<ul>
+    @for (item of menuItems$ | async; track $index) {
+        <li>
+            {{item.name}} - ${{item.price}} - {{item.type}}
+        </li>
+    }
+</ul>

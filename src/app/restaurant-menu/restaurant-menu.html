@@ -1,0 +1,17 @@
+<h1>Restaurant Menu</h1>
+
+@if (restaurant) {
+    <h1>{{restaurant.name}}</h1>
+    
+    <ul>
+        @for (item of restaurant.menuItems; track $index) {
+            <li>
+                {{item.name}} - ${{item.price}} - {{item.type}}
+            </li>
+        }
+    </ul>
+}
+
+<div>
+    <a [routerLink]="['/Restaurants']">Restaurants</a>
+</div>
