@@ -3,7 +3,7 @@
 <ul>
     @for (item of menuItems$ | async; track $index) {
         <li>
-            {{item.name}} - ${{item.price}} - {{item.type}}
+            {{item.restaurantOrigin}} - {{item.name}} - ${{item.price}} - {{item.type}}
         </li>
     }
 </ul>

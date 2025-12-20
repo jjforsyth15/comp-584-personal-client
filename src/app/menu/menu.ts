@@ -19,7 +19,7 @@ export class Menu{
 
   constructor(private http: HttpClient) {
     this.menuItems$ = 
-    http.get<MenuItemData[]>(environment.apiUrl + '/api/MenuItems');
+    http.get<MenuItemData[]>(environment.apiUrl + '/api/MenuItem');
    }
 
 }

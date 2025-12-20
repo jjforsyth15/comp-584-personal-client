@@ -7,8 +7,10 @@
     <tbody>
         @for (restaurant of restaurants$ | async; track $index) {
             <tr>
-                <td><a [routerLink]="['/restaurant-menu', restaurant.id]">{{ restaurant.id }}</a></td>
-                <td>{{ restaurant.name }}</td>
+                <button [routerLink]="['/restaurant-menu', restaurant.id]">
+                    <td>{{ restaurant.id }}</td>
+                    <td>{{ restaurant.name }}</td>
+                </button>
             </tr>
         }
     </tbody> 
