@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://localhost:7030'
+    apiUrl: 'https://comp-584-personal-server-final.onrender.com'
 };
