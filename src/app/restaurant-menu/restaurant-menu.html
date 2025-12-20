@@ -6,7 +6,7 @@
     <ul>
         @for (item of restaurant.menuItems; track $index) {
             <li>
-                <button>
+                <button (click)="addToOrder(item)">
                     {{item.name}} - ${{item.price}} - {{item.type}}
                 </button>
             </li>

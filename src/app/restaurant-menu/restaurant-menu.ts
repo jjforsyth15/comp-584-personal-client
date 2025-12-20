@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RestaurantData } from '../restaurant/restaurant-data';
-
+import { OrderItem, sharedOrder } from '../order/order-data';
 @Component({
   selector: 'app-restaurant-menu',
   imports: [],
@@ -27,4 +27,23 @@ export class RestaurantMenu implements OnInit{
       this.changeDetector.detectChanges();
     });
   }
+
+  addToOrder(item: MenuItemData) {
+    const existingItem = sharedOrder.find(item => item.menuItemId === item.id);
+    if (existingItem) 
+      existingItem.quantity++;
+    else {
+      sharedOrder.push({
+        id: 0,
+        orderId: 0,
+        menuItemId: item.id,
+        quantity: 1,
+        price: item.price,
+        menuItem: {
+          id: item.id,
+          name: item.name
+        }
+      } as OrderItem);
+      }
+    }
 }

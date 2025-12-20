@@ -22,7 +22,7 @@ export class NavBar implements OnInit, OnDestroy{
 
   constructor(public authService: AuthService) {
     authService.authStatus.pipe(takeUntil(this.destroy)).subscribe(result => {
-      this.isLoggedIn =result;
+      this.isLoggedIn = result;
     });
   }
 

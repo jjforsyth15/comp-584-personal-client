@@ -1,0 +1,24 @@
+<h1>My Order</h1>
+
+@if (orderItems.length === 0) {
+    <h2>Order is currently empty.</h2>
+} @else {
+    <table>
+        <tr>
+            <th>Menu Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        @for (item of orderItems; track $index) {
+            <tr>
+                <td>{{item.menuItem?.name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+        }
+
+        <p><strong>Total Price: ${{getTotal().toFixed(2)}}</strong></p>
+
+        <button mat-flat-button color="primary" (click)="submitOrder()">Submit Order</button>
+    </table>
+}

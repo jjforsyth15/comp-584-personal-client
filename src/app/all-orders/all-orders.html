@@ -1,0 +1,46 @@
+<h1>All Orders</h1>
+
+@if (orders$ | async; as orders) {
+
+  @if (orders.length === 0) {
+    <h2>No orders found.</h2>
+  } @else {
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>User Id</th>
+          <th>Created At</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Items</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (order of orders; track order.id) {
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.userId }}</td>
+            <td>{{ order.createdAt }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.total }}</td>
+            <td>
+              <ul>
+                @for (item of order.items; track item.id) {
+                  <li>
+                    {{ item.menuItem?.name ?? ('Item #' + item.menuItemId) }}
+                    (x{{ item.quantity }})
+                    — {{ item.price }}
+                  </li>
+                }
+              </ul>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+  }
+}

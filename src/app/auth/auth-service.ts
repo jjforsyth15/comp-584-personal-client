@@ -30,9 +30,10 @@ export class AuthService {
   login(loginRequest: LoginRequest): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(environment.apiUrl + "/api/Users", loginRequest)
     .pipe(tap(response => {
-      if (response.success)
+      if (response.success) {
         localStorage.setItem(this.token, response.token);
-      this.setAuthStatus(true);
+        this.setAuthStatus(true);
+      }
     }));
   }
 
@@ -57,5 +58,29 @@ export class AuthService {
         localStorage.setItem(this.token, response.token);
       this.setAuthStatus(true);
     }))
+  }
+
+  getRoles(): string[] {
+    const token = this.getToken();
+    if (!token)
+      return [];
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+
+      const roleClaim = 
+      payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ??
+      payload.role ??
+      payload.roles ??
+      [];
+
+      return Array.isArray(roleClaim) ? roleClaim : [roleClaim];
+    } catch {
+      return [];
+    }
+  }
+
+  isAdmin(): boolean {
+    return this.getRoles().includes('administrator');
   }
 }

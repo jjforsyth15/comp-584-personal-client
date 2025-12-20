@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { RestaurantData } from './restaurant-data';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-restaurant',
   imports: [ 

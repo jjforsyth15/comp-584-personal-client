@@ -5,7 +5,13 @@
         </button>
         <a mat-flat-button color="primary" [routerLink]="['/restaurant']">Restaurant</a>
         <a mat-flat-button color="primary" [routerLink]="['/menu']">Menu</a>
-        <a mat-flat-button color="primary" [routerLink]="['/order']">My Order</a>
+        <a mat-flat-button color="primary" [routerLink]="['/my-order']">My Order</a>
+
+        
+        @if (authService.isAdmin()) {
+            <a mat-flat-button color="primary" [routerLink]="['/all-orders']">All Orders</a>
+
+        }
         <span class="separator"></span>
 
         @if (isLoggedIn) {
